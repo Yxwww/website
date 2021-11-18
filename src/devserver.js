@@ -30,7 +30,8 @@ let moduleServer = new ModuleServer({
 let fileServer = ecstatic({root: root})
 
 function transformPage(req, resp) {
-  let path = (new URL(req.url)).pathname
+  // TODO: make url dynamic
+  let path = (new URL(req.url, 'http://localhost:8000')).pathname
   let dir = /\/([^\.\/]+)?$/.exec(path)
   if (dir) path = (dir[1] ? path : path.slice(0, -1)) + "/index.html"
 
